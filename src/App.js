@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import AuthDetails from './components/auth/AuthDetails';
+import LoginUser from './components/auth/LoginUser';
+import RegisterUser from './components/auth/RegisterUser';
+import { Slide, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ModalProvider } from 'styled-react-modal';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="appBody">
+      <ToastContainer 
+        position="top-center"
+        role="alert"
+        autoClose={3000}
+        transition={Slide}
+      />
+      <ModalProvider />
+      <AuthDetails />
     </div>
   );
 }

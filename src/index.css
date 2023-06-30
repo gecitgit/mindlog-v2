@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,7 +8,378 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  background: #eae7dc;
+  color: #575752;
+  height: 100vh;
 }
+
+.appBody{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.authDetailsContainer {
+  width: 100%;
+}
+.userHomeContainer {
+  width: 100%;
+  border: 4px dotted midnightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* ////////////////////// */
+/* Repeated Styles Starts */
+.pageBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(350px, 65%, 1000px);
+  border: 2px dashed green;
+  text-align: center;
+}
+
+.pageBodyText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 80%;
+}
+
+.h1Title {
+  font-size: 50px;
+}
+/* Repeated Styles Ends */
+/* //////////////////// */
+
+/* ///////////////////////// */
+/* Welcome page format start */
+.joinForm {
+  color: #575752;
+  text-decoration: none;
+  font-size: 32px;
+  border: 0;
+  border-bottom: 1px #e98074 dashed;
+  border-top: 1px #e98074 dashed;
+  background: none;
+  font-weight: bolder;
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
+}
+
+.joinForm::before{
+  margin-left: auto;
+}
+
+.joinForm::after, .joinForm::before {
+  content: '';
+  width: 0%;
+  height: 6px;
+  background: #e85a4f;
+  display: block;
+  transition: 0.5s;
+}
+
+.joinForm:hover {
+  color: #e85a4f;
+  transition: 0.5s;
+  border: none;
+  border-bottom: 1px rgba(233, 128, 116, 0.027);
+  border-top: 1px rgba(233, 128, 116, 0.027);
+}
+
+.joinForm:hover::after, .joinForm:hover::before {
+  width: 100%;
+}
+/* Welcome page format end */
+/* /////////////////////// */
+
+
+/* Navbar container */
+.navBarStyle {
+  color: #575752;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #d8c3a5;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: 0;
+  position: relative;
+  box-shadow: 0px 4px #e85a4f;
+}
+
+/* Left section of the navbar */
+.navBarLeft {
+  margin-right: 10px;
+}
+
+/* Right section of the navbar */
+.navBarRight {
+  display: flex;
+}
+
+.navBarRightBox {
+  display: flex;
+  flex-direction: row;
+}
+
+
+/* Hamburger menu toggle button */
+.menuToggle {
+  display: block;
+  cursor: pointer;
+  /* position: absolute;
+  top: 17px;
+  right: 70px; */
+  font-size: 24px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.menuToggle.active {
+  color: #e85a4f;
+  background-color: #eae7dc;
+  box-shadow: 0px 4px #e85a4f;
+
+}
+
+/* Dropdown menu container */
+.dropdownMenu {
+  position: absolute;
+  top: 56px;
+  right: 15%;
+  background-color: #f2f2f2;
+  z-index: 999;
+  border: 2px black solid;
+  min-width: 100px;
+  padding: 10px 0px 10px 0px;
+}
+
+/* Dropdown button */
+
+
+/* Dropdown content */
+.dropdownContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dropdownLogout {
+  font-size: 18px;
+  font-weight: bolder;
+  background-color: #e85a4f;
+  color: #eae7dc;
+  outline: none;
+  padding: 5px;
+}
+
+/* NavLink styles */
+.navBarChild {
+  display: inline-block;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 22px;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.navBarChildDrop {
+  padding: 2px 10px 2px 10px;
+  font-size: 14px;
+  font-weight: bolder;
+  transition: all 0.3s ease;
+}
+
+.navBarChild.active {
+  background-color: #eae7dc;
+  color: #e85a4f;
+  box-shadow: 0px 4px #e85a4f;
+
+}
+
+.navBarChildDrop.active {
+  background-color: #eae7dc;
+  color: #e85a4f;
+  border: 1px solid #e85a4f;
+}
+
+.navBarChild:hover {
+  background-color: #ddd;
+}
+
+.navBarChildDrop:hover {
+  background-color: #ddd;
+}
+
+a, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navBarLogout {
+  text-decoration: none;
+  background-color: #e85a4f;
+  color: #eae7dc;
+  border: none;
+  font-size: 14px;
+  font-weight: bolder;
+  height: 24px;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  border: 2px solid #e85a4f;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px #575752;
+}
+#logoutIcon {
+  align-self: center;
+  padding-left: 5px;
+}
+
+.navBarLogout:hover{
+  background-color: #eae7dc;
+  color: #e85a4f;
+  box-shadow: 4px 4px #e85a4f;
+}
+
+.navBarLogout:active {
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+@media (min-width: 751px) {
+  .menuToggle {
+    display: none;
+  }
+}
+
+
+/* ///////////////////////// */
+/* LOG page format start */
+.postCardTextSmall {
+  font-weight: bold;
+  font-size: medium;
+}
+
+.postCardTextMedium {
+  font-weight: bold;
+  font-size: large;
+}
+
+.postCardTextLarge {
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+.logBoxSmall {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #eae7dc;
+  margin-bottom: 15px;
+  border: 2px solid #e85a4f;
+  width: clamp(275px, 55%, 300px);
+  flex-direction: column;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.postBtns {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.deleteLog{
+  background-color: #eae7dc;
+  color: #e85a4f;
+  margin-right: 10px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 900;
+}
+.deleteLog:hover{
+  background-color: #e85a4f;
+  color: #eae7dc;
+  transition: all 0.3s ease;
+}
+
+.logInfo {
+  background-color: #eae7dc;
+  color: #575752;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 900;
+}
+.logInfo:hover{
+  background-color: #575752;
+  color: #eae7dc;
+  transition: all 0.3s ease;
+}
+
+.logContainer {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #d8c3a5;
+  color: #575752;
+  flex-direction: row;
+  align-items: center;
+  border: 2px solid #e85a4f;
+  margin: 20px 0px 10px 0px;
+  justify-content: space-evenly;
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* ///// filter specifics ////// */
+
+.logFilterBody {
+  border: 2px purple dashed;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logFilterHolder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.toggleFilterBtn {
+  padding: 5px 25px 5px 25px;
+  margin: 0;
+  text-decoration: none;
+  outline: none;
+  font-size: 22px;
+  font-weight: bolder;
+  letter-spacing: 0.05em;
+  border: 4px solid #e85a4f;
+  color: #575752;
+  background-color: #eae7dc;
+}
+
+.toggleFilterBtn:hover {
+  background-color: #e85a4f;
+  color: #eae7dc;
+  transition: all 0.3s ease;
+}
+
+/* LOG page format end */
+/* /////////////////////// */
