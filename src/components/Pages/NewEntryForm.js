@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { loremIpsum } from "lorem-ipsum";
+import { Navigate } from 'react-router-dom';
 
 function randomDate(start, end) {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
@@ -56,38 +57,9 @@ function NewEntryForm({ onPostSubmit }) {
         }
     });
 
-    function handleRandomPosts() {
-        const numPosts = prompt("enter a number of random posts to generate");
-        for (let i = 0; i < numPosts; i++) {
-            const date = randomDate(new Date('2022-10-01'), new Date('2023-06-28'));
-            const time = `${Math.floor(Math.random()*24).toString().padStart(2, '0')}:${(Math.floor(Math.random()*4)*15).toString().padStart(2, '0')}`;
-            const sleep = (Math.random() * 24).toFixed(1);
-            const moods = ["🤩 Ecstatic", "😀 Happy", "😐 Neutral", "😰 Anxious", "😨 Scared", "😢 Sad", "😡 Angry"];
-            const mood = moods[Math.floor(Math.random() * moods.length)];
-            const energies = ["Motivated", "Lethargic", "Restless", "Calm", "Numb"];
-            const energy = energies[Math.floor(Math.random() * energies.length)];
-            const notes = lorem.generateSentences(2);
-
-            const postData = {
-                day: date.toLocaleDateString(undefined, { weekday: 'long' }),
-                date: date.toISOString().substring(0,10),  // Get date in YYYY-MM-DD format
-                time: time,
-                sleep: sleep,
-                mood: mood,
-                energy: energy,
-                notes: notes,
-            };
-
-            onPostSubmit(postData);
-        }
-    }
-
-
-
     return (
         <div className="pageBody">
-            <button onClick={handleRandomPosts}>Generate Random Posts</button>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='newPostForm'>
                 <fieldset>
                     <legend>Log your day!</legend>
                     <div>
@@ -188,13 +160,12 @@ function NewEntryForm({ onPostSubmit }) {
                             name="notes"
                             placeholder='[optional] Add any additional notes here to reflect on your day...'
                             rows="5"
-                            cols="50"
                             value={formData.notes}
                             onChange={handleChange}
                         />
                     </div>
 
-                <button id="formSubmit" type="submit" value="submit form">Submit</button>
+                <button id="formSubmit" type="submit" value="submit form">Add your post!</button>
                 </fieldset>
             </form>
         </div>

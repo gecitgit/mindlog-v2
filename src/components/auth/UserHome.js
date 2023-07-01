@@ -15,10 +15,10 @@ function UserHome({ currentUser, userSignOut, onPostSubmit, onDeletePost }) {
             <Routes>
                 <Route path="/" element={<HomeBody />} />
                 <Route path="/welcome" element={<Welcome />} />
-                <Route path="/log" element={<LogBody posts={currentUser.posts} onDeletePost={onDeletePost} />} />
+                <Route path="/log" element={<LogBody posts={currentUser.posts || {}} onDeletePost={onDeletePost} />} />
                 <Route path="/newForm" element={<NewEntryForm onPostSubmit={onPostSubmit} />} />
-                <Route path="/stats" element={<StatsBody />} />
-                <Route path="/profile" element={<ProfileBody />} />
+                <Route path="/stats" element={<StatsBody currentUser={currentUser} />} />
+                <Route path="/profile" element={<ProfileBody currentUser={currentUser} />} />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </div>

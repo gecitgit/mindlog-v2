@@ -5,8 +5,7 @@ import RegisterUser from "./RegisterUser";
 
 function AuthLayout() {
     return (
-        <div style={{border: "red 1px dotted"}}>
-            This text is from AuthLayout.js
+        <div className="auth-layout-container">
             <Routes>
                 <Route path="/" element={<LoginUser />} />
                 <Route path="/register" element={<RegisterUser />} />

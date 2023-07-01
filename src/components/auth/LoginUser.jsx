@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { set, ref, get } from 'firebase/database';
 import { database } from '../../firebase';
+import { FcGoogle } from 'react-icons/fc';
 
 const signInWithEmailAndPassword = (email, password) => {
     return signInWithEmail(auth, email, password);
@@ -24,10 +25,10 @@ const LoginUser = () => {
             .catch((error) => {
                 switch (error.code) {
                     case 'auth/user-not-found':
-                        toast.error('Email address is incorrect or not registered.');
+                        toast.error('Email does not match our records.Check your spelling or visit the sign up page!');
                         break;
                     case 'auth/wrong-password':
-                        toast.error('Incorrect password.');
+                        toast.error('Password does not match our records. Please try again.');
                         break;
                     case 'auth/invalid-email':
                         toast.error('Please enter a valid email address.');
@@ -65,30 +66,49 @@ const LoginUser = () => {
     };
 
     return (
-        <div className='sign-in-container'>
-            <form onSubmit={handleSignIn}>
-                <h1>Log In</h1>
-                <input
-                    type='email'
-                    placeholder='enter your email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <br />
-                <input
-                    type='password'
-                    placeholder='enter your password'
-                    autoComplete='on'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <br />
-                <button type='submit'>Log In</button>
-                <button onClick={handleSignInWithGoogle}>G - Sign In With Google</button>
-                <br />
-                <span>
-                    Don't have an account? <Link to="/register">Sign Up</Link>
-                </span>
+        <div className="auth-prompt">
+            <form onSubmit={handleSignIn} title='Login form for MindLOG v2'>
+            <div className='auth-form-box'>
+                <div className='auth-form-header'>
+                    <h1 className='auth-form-h1'>Welcome to <span>MindLOG</span>!</h1>
+                </div>
+                <div className='auth-form-body'>
+                    <div className='auth-form-body-input'>
+                        <label htmlFor='user-email'>Email</label>
+                        <input 
+                            autoFocus
+                            type='text'
+                            id='user-email'
+                            placeholder='enter your email'
+                            value={email}
+                            autoComplete='on'
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className='auth-form-body-input'>
+                        <label htmlFor='user-password'>Password</label>
+                        <input 
+                            type='password' 
+                            id='user-password'
+                            placeholder='enter your password'
+                            value={password}
+                            autoComplete='on'
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className='auth-form-body-bttn-box'>
+                        <button type='submit' className='auth-form-body-bttn'>Login</button>
+                    </div>
+                </div>
+                <div className='auth-form-footer'>
+                    <button className="google-social" onClick={handleSignInWithGoogle}>
+                        <FcGoogle className='google-social-icon' /><span>Login with Google</span>
+                    </button>
+                    <span className="auth-form-calltoaction">
+                        Don't have an account? <Link to="/register" style={{ color: "#e85a4f", fontWeight: "bolder"}}><u>Sign Up!</u></Link>
+                    </span>
+                </div>
+            </div>
             </form>
         </div>
     )

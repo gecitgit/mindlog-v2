@@ -57,6 +57,7 @@ function LogFilter({ onFilterSubmit, posts }) {
         }
     }
 
+
     function handleSubmit(event) {
         event.preventDefault();
         
@@ -74,12 +75,12 @@ function LogFilter({ onFilterSubmit, posts }) {
 
     return (
         <div className="logFilterBody">
-            <span>Current filters: </span>
+            <span>Filter your journal entries effortlessly by day of the week, date, hours of sleep, mood, and energy. Remember to press the 'Update my posts!' button anytime you change something to apply your filters!</span>
 
             <form onSubmit={handleSubmit}>
             <div className="logFilterHolder">
-                <fieldset id="dayOfWeekField">
-                    <legend>choose day of week</legend>
+                <fieldset className='filterOptions' id="weekdays">
+                    <legend>Filter by Weekday</legend>
                     <div>
                         <input 
                             type="checkbox" 
@@ -160,8 +161,8 @@ function LogFilter({ onFilterSubmit, posts }) {
                 </fieldset>
                 
 
-                <fieldset>
-                    <legend>Filter by date range</legend>
+                <fieldset className='filterOptions' id="dates">
+                    <legend>Filter by Date</legend>
                     <div>
                         <label htmlFor="start">Pick the start date: </label>
                         <br />
@@ -186,7 +187,7 @@ function LogFilter({ onFilterSubmit, posts }) {
                     </div>
                 </fieldset>
 
-                <fieldset>
+                <fieldset className='filterOptions' id="sleep">
                     <legend>Filter by Sleep</legend>
                     <div>
                         <input 
@@ -256,9 +257,9 @@ function LogFilter({ onFilterSubmit, posts }) {
                     </div>
                 </fieldset>
 
-                <fieldset>
+                <fieldset className='filterOptions' id="mood">
                     <legend>Filter by Mood</legend>
-                    <div>
+                    <div >
                         <input 
                             type="checkbox" 
                             id="ecstatic" 
@@ -337,9 +338,9 @@ function LogFilter({ onFilterSubmit, posts }) {
                     </div>
                 </fieldset>
 
-                <fieldset>
+                <fieldset className='filterOptions' id="energy">
                     <legend>Filter by Energy</legend>
-                    <div>
+                    <div >
                         <input 
                             type="checkbox" 
                             id="motivated" 
@@ -397,7 +398,7 @@ function LogFilter({ onFilterSubmit, posts }) {
                 </fieldset>
 
             </div>
-                <button type="submit">submit the filters</button>
+                <button type="submit" className='updateFilter'>Update my posts!</button>
             </form>
 
             

@@ -3,9 +3,11 @@ import UserHome from "./UserHome";
 import ChooseUsername from "./ChooseUsername";
 import { toast } from "react-toastify";
 import { getDatabase, ref, onValue, update, push, remove } from "firebase/database";
+import { useNavigate } from "react-router-dom";
 
 function HomeLayout({ userID, userSignOut, auth}) {
     const [currentUser, setCurrentUser] = useState(null)
+    const navigate = useNavigate();
 
     useEffect(() => {
         const db = getDatabase();
@@ -50,6 +52,7 @@ function HomeLayout({ userID, userSignOut, auth}) {
             })
             .catch((error) => {
                 console.log("Error updating username: ", error);
+                toast.error("There was an issue saving the username. Try again later")
             })
     }
 
@@ -66,6 +69,7 @@ function HomeLayout({ userID, userSignOut, auth}) {
         update(postsRef, newPost)
             .then(() => {
                 toast.success("post successfully added")
+                navigate("/log");
             })
             .catch((error) => {
                 toast.error("error adding post")
@@ -74,6 +78,7 @@ function HomeLayout({ userID, userSignOut, auth}) {
     }
 
     function handleDeletePost(postId) {
+        console.log("this i the postId being passed down when this gets deleted: ", postId)
         const db = getDatabase();
         const postRef = ref(db, `users/${userID}/posts/${postId}`);
         remove(postRef)
@@ -93,7 +98,6 @@ function HomeLayout({ userID, userSignOut, auth}) {
             ) : (
                 <ChooseUsername onUsernameSubmit={handleUsernameSubmit} currentUser={currentUser}/>
             )}
-            <button onClick={userSignOut}>Here is a button to logout!</button>
         </div>
     )
 }
