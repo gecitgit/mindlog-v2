@@ -3,7 +3,6 @@ import { toast } from 'react-toastify';
 
 function LogFilter({ onFilterSubmit, posts }) {
     const [postDates, setPostDates] = useState([]);
-    console.log("this is what posts looks like: ", posts)
 
     useEffect(() => {
         if (posts) {
@@ -69,7 +68,6 @@ function LogFilter({ onFilterSubmit, posts }) {
             return;
         }
         
-        console.log("Submit form for filter was pressed: ", formData)
         onFilterSubmit(formData);
     }
 
@@ -398,7 +396,9 @@ function LogFilter({ onFilterSubmit, posts }) {
                 </fieldset>
 
             </div>
+            <div style={{ display: "flex", justifyContent: "center"}}>
                 <button type="submit" className='updateFilter'>Update my posts!</button>
+            </div>
             </form>
 
             

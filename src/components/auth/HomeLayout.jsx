@@ -92,7 +92,7 @@ function HomeLayout({ userID, userSignOut, auth}) {
     }
 
     return (
-        <div style={{border: "red 1px dotted"}}>
+        <div>
             { currentUser && currentUser.username ? (
                 <UserHome currentUser={currentUser} userSignOut={userSignOut} onPostSubmit={handlePostSubmit} onDeletePost={handleDeletePost}/>
             ) : (

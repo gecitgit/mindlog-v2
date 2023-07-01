@@ -1,17 +1,12 @@
-import { toast } from "react-toastify";
 import ReactConfirmPopup from "react-confirm-popup";
 import { TbTrash, TbBook } from "react-icons/tb";
 import { useEffect, useState } from "react";
-import Modal from "styled-react-modal";
 
 function PostCard({ post, postId, onDeletePost }) {
     const postDate = new Date(`${post.date} ${post.time}`)
     const [modal, setModal] = useState(false);
 
     function toggleModal() {
-        console.log("current post looks like: ", post);
-        console.log("this is allegedly the postId being passed here: ", postId);
-        console.log("post.key is: ", post.key)
         setModal(!modal);
     }
 

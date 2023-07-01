@@ -10,7 +10,7 @@ function ProfileVeteran({ postCount, user, sleepAvg, hasNotes }) {
                 <br /><br />
                 Make sure to swing by here often. Not only will you see how your habits and mood change over time, but I also have some <strong>exciting</strong> new features planned to take your experience to the next level. Trust me, it's going to be a game-changer!
                 <br /><br />
-                I'm proud of the steps you've taken so far, <span style={{color: "#e85a4f", fontWeight: "bold"}}>{user}</span>. Keep it up!
+                I'm proud of the steps you've taken so far, <span style={{ color: "#e85a4f", fontWeight: "bold" }}>{user}</span>. Keep it up!
             </p>
         </div>
     )

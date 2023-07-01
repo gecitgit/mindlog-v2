@@ -25,8 +25,6 @@ function AuthDetails() {
         return () => cleanAuthListener();
     }, [])
 
-    console.log("this is authuser: ", authUser);
-
     return (
         <div className='authDetailsContainer'>
             { authUser ? (

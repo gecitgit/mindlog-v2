@@ -19,7 +19,6 @@ function EnergyRadar({ currentUser }) {
             sleep: parseFloat(averageSleep),
         };
     });
-    console.log("this is results: ", result);
 
     function EnergyRadarToolTip({ active, payload, label }) {
         if (active) {
@@ -40,25 +39,26 @@ function EnergyRadar({ currentUser }) {
         if (entry.sleep > maxSleepHours) {
             maxSleepHours = entry.sleep;
             maxSleepEnergy = entry.energy;
-    }});
+        }
+    });
 
 
     return (
         <div className="stat-box">
             <h2>Average Sleep Distribution vs Energy </h2>
             <p>
-                This radar graph shows the average distribution of your energy each day compared to how much sleep you get. Most days you report feeling <strong>{maxSleepEnergy}</strong> and you're averaging a whopping <strong>{maxSleepHours}</strong> hours of sleep on those days! 
+                This radar graph shows the average distribution of your energy each day compared to how much sleep you get. Most days you report feeling <strong>{maxSleepEnergy}</strong> and you're averaging a whopping <strong>{maxSleepHours}</strong> hours of sleep on those days!
             </p>
             <ResponsiveContainer height={350}>
-            <RadarChart outerRadius="90%" cx="50%" cy="50%" data={result} stroke="#7f7f7f" fill="#000000">
-                <PolarGrid fill="#000000" stroke="#7f7f7f"/>
-                <PolarAngleAxis dataKey="energy" />
-                <PolarRadiusAxis angle={65} domain={[0, 'auto']} type="number" stroke="#7f7f7f" />
-                <Radar dataKey="sleep" stroke="#aa1f22" strokeWidth={2} fill="#e85a4f" fillOpacity={0.5} />
-                <Tooltip 
-                    content={<EnergyRadarToolTip />}
-                />
-            </RadarChart>
+                <RadarChart outerRadius="90%" cx="50%" cy="50%" data={result} stroke="#7f7f7f" fill="#000000">
+                    <PolarGrid fill="#000000" stroke="#7f7f7f" />
+                    <PolarAngleAxis dataKey="energy" />
+                    <PolarRadiusAxis angle={65} domain={[0, 'auto']} type="number" stroke="#7f7f7f" />
+                    <Radar dataKey="sleep" stroke="#aa1f22" strokeWidth={2} fill="#e85a4f" fillOpacity={0.5} />
+                    <Tooltip
+                        content={<EnergyRadarToolTip />}
+                    />
+                </RadarChart>
             </ResponsiveContainer>
 
         </div>

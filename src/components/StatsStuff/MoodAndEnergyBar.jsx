@@ -73,13 +73,11 @@ function MoodAndEnergyBar({ currentUser }) {
                     </div>
                 </div>
 
-                
+
 
             </div>
         }
     }
-    console.log("this is the array data: ", weekArray)
-    console.log("this is day array: ", dayArrays)
 
     const moodCounts = {};
     const energyCounts = {};
@@ -102,15 +100,10 @@ function MoodAndEnergyBar({ currentUser }) {
 
     const topMood = Object.entries(moodCounts).reduce((maxMood, [mood, count]) => (count > maxMood.count ? { mood, count } : maxMood), { mood: '', count: 0 }).mood;
 
-    const topEnergy = Object.entries(energyCounts).reduce((maxEnergy, [energy, count]) => (count > maxEnergy.count ? { energy, count} : maxEnergy), { energy: '', count: 0}).energy;
+    const topEnergy = Object.entries(energyCounts).reduce((maxEnergy, [energy, count]) => (count > maxEnergy.count ? { energy, count } : maxEnergy), { energy: '', count: 0 }).energy;
 
     const topMoodCount = moodCounts[topMood] || 0;
     const topEnergyCount = energyCounts[topEnergy] || 0;
-
-    console.log("Top Mood: ", topMood);
-    console.log("Top energy: ", topEnergy);
-    console.log("Top mood count: ", topMoodCount);
-    console.log("Top enery count: ", topEnergyCount);
 
     function CustomLegend({ payload }) {
         const moodItems = payload.slice(0, 7);
@@ -134,25 +127,25 @@ function MoodAndEnergyBar({ currentUser }) {
                 <div className="legend-category">
                     <p>Mood</p>
                     <div className="legend-item-holder">
-                    {sortedMoodItems.map((entry, index) => (
+                        {sortedMoodItems.map((entry, index) => (
 
-                        <div key={`legend-${index}`} className="legend-item">
-                            <span className="legend-icon" style={{ backgroundColor: entry.color}} />
-                            <span className="legend-label">{entry.value}</span>
-                        </div>
-                    ))}
+                            <div key={`legend-${index}`} className="legend-item">
+                                <span className="legend-icon" style={{ backgroundColor: entry.color }} />
+                                <span className="legend-label">{entry.value}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className="legend-category">
                     <p>Energy</p>
                     <div className="legend-item-holder">
 
-                    {sortedEnergyItems.map((entry, index) => (
-                        <div key={`legend-${index}`} className="legend-item">
-                            <span className="legend-icon" style={{ backgroundColor: entry.color}} />
-                            <span className="legend-label">{entry.value}</span>
-                        </div>
-                    ))}
+                        {sortedEnergyItems.map((entry, index) => (
+                            <div key={`legend-${index}`} className="legend-item">
+                                <span className="legend-icon" style={{ backgroundColor: entry.color }} />
+                                <span className="legend-label">{entry.value}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -163,7 +156,7 @@ function MoodAndEnergyBar({ currentUser }) {
         <div className="stat-box">
             <h2>Mood and Energy Distribution by Day</h2>
             <p>
-                Below you'll find the daily distrubution of your mood and energy ratings.  Each weekday has two bars where the left represents your Mood and the right represents your Energy.  The bars represent the number of times you logged that specific Energy and Mood on the given day of the week.  
+                Below you'll find the daily distrubution of your mood and energy ratings.  Each weekday has two bars where the left represents your Mood and the right represents your Energy.  The bars represent the number of times you logged that specific Energy and Mood on the given day of the week.
                 <br />
                 Over <strong>{currentUser.posts.length}</strong> entries your most commonly logged Mood was <strong>{topMood}</strong> which you logged a total of <strong>{topMoodCount}</strong> times.  Your most commonly logged Energy was <strong>{topEnergy}</strong> which you logged a total of <strong>{topEnergyCount}</strong> times so far. Scroll down to see some more indepth charts.
             </p>
@@ -172,51 +165,47 @@ function MoodAndEnergyBar({ currentUser }) {
                     data={weekArray}
                     margin={{ top: 5, right: 20, left: 1, bottom: 25 }}
                     padding={0}
-                    style={{ backgroundColor : "#eae7dc" }}
-                    >
-                    <CartesianGrid 
+                    style={{ backgroundColor: "#eae7dc" }}
+                >
+                    <CartesianGrid
                         strokeDasharray="4 1"
                         fill="#eae7dc"
                         fillOpacity={.3}
                         stroke="#000000"
                         strokeOpacity={0.5}
-                        />
-                    <XAxis 
+                    />
+                    <XAxis
                         dataKey="day"
                         label={{ value: "Days of the Week", position: "insideBottom", offset: "-15", fontWeight: "bold", fontSize: "18px" }}
                         fontWeight="bold"
-                        />
+                    />
                     <YAxis />
-                    <Tooltip 
+                    <Tooltip
                         content={<MandEBarToolTip />}
-                        />
-                    <Bar dataKey="moodAngry" name="Angry" stackId="a" fill="#DC040C" stroke= "#000000"/>
-                    <Bar dataKey="moodSad" name="Sad" stackId="a" fill="#233D5D" stroke= "#000000"/>
-                    <Bar dataKey="moodScared" name="Scared" stackId="a" fill="#917960" stroke= "#000000"/>
-                    <Bar dataKey="moodAnxious" name="Anxious" stackId="a" fill="#FCACA4" stroke= "#000000"/>
-                    <Bar dataKey="moodNeutral" name="Neutral" stackId="a" fill="#F4E7CC" stroke= "#000000"/>
-                    <Bar dataKey="moodHappy" name="Happy" stackId="a" fill="#FCDC2C" stroke= "#000000"/>
-                    <Bar dataKey="moodEcstatic" name="Ecstatic" stackId="a" fill="#519FB8" stroke= "#000000"/>
-                    <Bar dataKey="energyNumb" name="Numb" stackId="b" fill="#371219" stroke= "#000000"/>
-                    <Bar dataKey="energyCalm" name="Calm" stackId="b" fill="#95675B" stroke= "#000000"/>
-                    <Bar dataKey="energyRestless" name="Restless" stackId="b" fill="#547484" stroke= "#000000"/>
-                    <Bar dataKey="energyLethargic" name="Lethargic" stackId="b" fill="#BD648E" stroke= "#000000"/>
-                    <Bar dataKey="energyMotivated" name="Motivated" stackId="b" fill="#FC842C" stroke= "#000000"/>
-                    <Legend 
+                    />
+                    <Bar dataKey="moodAngry" name="Angry" stackId="a" fill="#DC040C" stroke="#000000" />
+                    <Bar dataKey="moodSad" name="Sad" stackId="a" fill="#233D5D" stroke="#000000" />
+                    <Bar dataKey="moodScared" name="Scared" stackId="a" fill="#917960" stroke="#000000" />
+                    <Bar dataKey="moodAnxious" name="Anxious" stackId="a" fill="#FCACA4" stroke="#000000" />
+                    <Bar dataKey="moodNeutral" name="Neutral" stackId="a" fill="#F4E7CC" stroke="#000000" />
+                    <Bar dataKey="moodHappy" name="Happy" stackId="a" fill="#FCDC2C" stroke="#000000" />
+                    <Bar dataKey="moodEcstatic" name="Ecstatic" stackId="a" fill="#519FB8" stroke="#000000" />
+                    <Bar dataKey="energyNumb" name="Numb" stackId="b" fill="#371219" stroke="#000000" />
+                    <Bar dataKey="energyCalm" name="Calm" stackId="b" fill="#95675B" stroke="#000000" />
+                    <Bar dataKey="energyRestless" name="Restless" stackId="b" fill="#547484" stroke="#000000" />
+                    <Bar dataKey="energyLethargic" name="Lethargic" stackId="b" fill="#BD648E" stroke="#000000" />
+                    <Bar dataKey="energyMotivated" name="Motivated" stackId="b" fill="#FC842C" stroke="#000000" />
+                    <Legend
                         content={<CustomLegend />}
                         verticalAlign="bottom"
                         offset={-15}
                         width="100%"
-                        />
+                    />
                 </BarChart>
             </ResponsiveContainer>
-                
-            {/* </ResponsiveContainer> */}
-
 
         </div>
     )
-
 }
 
 export default MoodAndEnergyBar;

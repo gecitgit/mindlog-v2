@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { TbLogout } from "react-icons/tb";
 import { FaBars } from "react-icons/fa";
@@ -12,7 +12,6 @@ function NavBar({ currentUser, userSignOut }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const menuToggleClass = isMenuOpen ? "menuToggle active" : "menuToggle";
-    const dropdownRef = useRef(null);
 
     useEffect(() => {
         const query = window.matchMedia(mobileMediaQuery);

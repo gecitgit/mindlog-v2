@@ -4,10 +4,9 @@ function Welcome() {
     return (
         <div className="pageBody">
             <div className="pageBodyText">
-                <h2 style={{ color: "red", fontSize: "28px" }}>Page = done</h2>
                 <div>
                     <h1 className="h1Title">Welcome to <span style={{ color: "#e85a4f" }}>MindLOG</span>!</h1>
-                    <p>
+                    <p style={{ marginBottom: "30px"}}>
                         Welcome to MindLOG, your friendly mood companion.  Get ready to log your experiences, track your mood, nights of sleep, and unlock captivating insights about yourself.
                         <br />
                         Simply tap the form button below to start pouring your thoughts, worries and delightful musings.  I'm here to capture your journey and provide valuable self-reflection.

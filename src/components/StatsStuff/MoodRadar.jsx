@@ -5,7 +5,7 @@ function MoodRadar({ currentUser }) {
     const moodSleepAverages = {};
 
     for (const post of currentUser.posts) {
-        const {mood, sleep } = post;
+        const { mood, sleep } = post;
         if (!moodSleepAverages[mood]) {
             moodSleepAverages[mood] = [];
         }
@@ -46,18 +46,18 @@ function MoodRadar({ currentUser }) {
         <div className="stat-box">
             <h2>Average Sleep Distribution vs Mood</h2>
             <p>
-                This radar graph shows the average distribution of your energy each day compared to how much sleep you get. Most days you report feeling <strong>{maxSleepMood}</strong> and you're averaging a whopping <strong>{maxSleepHours}</strong> hours of sleep on those days! 
+                This radar graph shows the average distribution of your energy each day compared to how much sleep you get. Most days you report feeling <strong>{maxSleepMood}</strong> and you're averaging a whopping <strong>{maxSleepHours}</strong> hours of sleep on those days!
             </p>
             <ResponsiveContainer height={350}>
-            <RadarChart cx="50%" cy="50%" outerRadius="90%" data={result} stroke="#7f7f7f">
-                <PolarGrid stroke="#7f7f7f"/>
-                <PolarAngleAxis dataKey="mood"/>
-                <PolarRadiusAxis angle={65} domain={[0, 9]} type="number" stroke="#7f7f7f"/>
-                <Radar dataKey="sleep" stroke="#aa1f22" strokeWidth={2} fill="#e85a4f" fillOpacity={0.6}/>
-                <Tooltip 
-                    content={<MoodRadarToolTip />}
-                />
-            </RadarChart>
+                <RadarChart cx="50%" cy="50%" outerRadius="90%" data={result} stroke="#7f7f7f">
+                    <PolarGrid stroke="#7f7f7f" />
+                    <PolarAngleAxis dataKey="mood" />
+                    <PolarRadiusAxis angle={65} domain={[0, 9]} type="number" stroke="#7f7f7f" />
+                    <Radar dataKey="sleep" stroke="#aa1f22" strokeWidth={2} fill="#e85a4f" fillOpacity={0.6} />
+                    <Tooltip
+                        content={<MoodRadarToolTip />}
+                    />
+                </RadarChart>
             </ResponsiveContainer>
 
         </div>

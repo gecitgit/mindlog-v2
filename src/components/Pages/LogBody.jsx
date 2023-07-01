@@ -11,8 +11,6 @@ function LogBody({ posts, onDeletePost }) {
         setFilteredPosts(posts);
     }, [posts]);
 
-    console.log("filteredPosts at the beginning: ", filteredPosts)
-
     function handleFilterSubmit(formData) {
         const { days, dateRange, sleep, mood, energy } = formData;
 
@@ -67,21 +65,13 @@ function LogBody({ posts, onDeletePost }) {
         }
 
         setFilteredPosts(filteredPostsObj)
-        console.log("this is filtered posts: ", filteredPosts);
-        console.log("this is the formData via log body: ", formData);
     }
-    
 
-
-    console.log("This is the currentUser's posts prop: ", posts);
-    console.log("this is the filteredposts array: ", filteredPosts)
-    console.log("the filteredposts array is this long: ", Object.keys(filteredPosts).length);
 
     return (
         <div className="pageBody">
-            <h2 style={{ color: "red", fontSize: "22px" }}>DONE</h2>
-            <h1 className="pageBodyText" style={{marginBottom: 0}}>Welcome to your Journal</h1>
-            <p style={{ padding: "5px"}}>
+            <h1 className="pageBodyText" style={{ marginBottom: 0 }}>Welcome to your Journal</h1>
+            <p style={{ padding: "5px" }}>
                 Welcome to the Log page! Here, you can view all your log entries and dive int the details of your journey.  Use the "Show Filters" button to refine your search by day of the week, date range, hours slept, mood, and energy.  Customize your view to uncover the moments that matter most.
                 <br />
                 Adding a new entry is a breeze from this page too! Simply click the designated button and let your thoughts flow onto the screen.
@@ -94,7 +84,7 @@ function LogBody({ posts, onDeletePost }) {
             <button onClick={() => setFilterToggle(!filterToggle)} className="toggleFilterBtn">
                 {filterToggle ? "Hide Filters" : "View Filters"}
             </button>
-            { filterToggle && (
+            {filterToggle && (
                 <LogFilter
                     posts={posts}
                     onFilterSubmit={handleFilterSubmit}
@@ -127,9 +117,6 @@ function LogBody({ posts, onDeletePost }) {
                         })
                 )}
             </div>
-
-
-
         </div>
     );
 }

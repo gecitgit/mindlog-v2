@@ -19,7 +19,7 @@ const renderActiveShape = (props) => {
             <text id="pie-chart-text-anchor" x={cx} y={cy} dy={8} textAnchor="middle" fill={fill} >
                 {payload.name} - {(percent * 100).toFixed(2)}%
             </text>
-            <Sector 
+            <Sector
                 cx={cx}
                 cy={cy}
                 innerRadius={innerRadius}
@@ -29,7 +29,7 @@ const renderActiveShape = (props) => {
                 fill={fill}
                 backgroundColor={"red"}
             />
-            <Sector 
+            <Sector
                 cx={cx}
                 cy={cy}
                 startAngle={startAngle}
@@ -76,17 +76,10 @@ function EnergyPie({ currentUser }) {
     const onPieEnter = (_, index) => {
         setActiveIndex(index);
     };
-    console.log("energy datA: ", energyData)
-
-    // const legendFormatter = (value: string, entry: any) => {
-    //     const { color } = entry;
-
-    //     return <span style={{ color, backgroundColor: "white" }}>{value}</span>
-    // }
 
     let maxEnergyKey = 0;
     let maxEnergyValue = Number.NEGATIVE_INFINITY;
-    
+
     for (const [key, value] of Object.entries(energyData)) {
         if (value > maxEnergyValue) {
             maxEnergyKey = key;
@@ -103,10 +96,9 @@ function EnergyPie({ currentUser }) {
             </p>
             <ResponsiveContainer height={350}>
                 <PieChart >
-                    <Legend 
-                        // formatter={legendFormatter}
-                        align="center" 
-                        height={36} 
+                    <Legend
+                        align="center"
+                        height={36}
                         verticalAlign="bottom"
                         iconType="diamond"
                         wrapperStyle={{

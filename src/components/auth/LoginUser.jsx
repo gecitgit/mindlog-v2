@@ -20,7 +20,6 @@ const LoginUser = () => {
         signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 toast.success('Successfully logged in!');
-                console.log('user credential:', userCredential)
             })
             .catch((error) => {
                 switch (error.code) {
@@ -56,12 +55,11 @@ const LoginUser = () => {
                 userData.username = "";
 
                 set(userRef, userData);
-                console.log("User data saved successfully");
             } else {
                 console.log("User data already exists");
             }
         } catch (error) {
-            console.log("error signing in with google: ", error);
+            console.error("error signing in with google: ", error);
         }
     };
 

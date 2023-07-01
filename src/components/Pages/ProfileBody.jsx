@@ -44,7 +44,6 @@ function ProfileBody({ currentUser }) {
 
     return (
         <div className="pageBody">
-            <h1>FINISHED! BOTH VERSIONs</h1>
             <h1 style={{marginBottom: 0}}>Hey there, <span style={{color: "#e85a4f" }}>{currentUser.username}</span></h1>
             {postCount > 10 ? (
                 <ProfileVeteran postCount={postCount} sleepAvg={sleepAvg} hasNotes={hasNotes} user={currentUser.username} />

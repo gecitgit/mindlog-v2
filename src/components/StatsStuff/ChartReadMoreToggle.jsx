@@ -1,5 +1,5 @@
 function ChartReadMoreToggle() {
-    return(
+    return (
         <p className="stat-cap">
             &nbsp;
         </p>

@@ -26,7 +26,6 @@ function NewEntryForm({ onPostSubmit }) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        console.log("form was submitted with this: ", formData);
 
         const selectedDate = new Date(`${formData.date} ${formData.time}`);
         const dayOfWeek = selectedDate.toLocaleDateString(undefined, { weekday: 'long' });
@@ -42,7 +41,6 @@ function NewEntryForm({ onPostSubmit }) {
         };
         
         onPostSubmit(postData);
-        console.log("post data here: ", postData)
     }
 
     const LoremIpsum = require("lorem-ipsum").LoremIpsum;

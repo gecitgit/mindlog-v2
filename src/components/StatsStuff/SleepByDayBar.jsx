@@ -17,7 +17,6 @@ function SleepByDayBar({ currentUser }) {
             sleepData[day].push(sleep);
         }
     });
-    // console.log("this is sleepData: ", sleepData);
 
     const averageSleepData = Object.keys(sleepData).map(day => {
         const sleepValues = sleepData[day];
@@ -28,7 +27,6 @@ function SleepByDayBar({ currentUser }) {
             sleep: parseFloat(averageSleep),
         };
     });
-    console.log("this is averagesleepdata: ", averageSleepData);
 
     let maxSleepEntry = averageSleepData[0];
     let previousEntry = averageSleepData[0];
@@ -72,56 +70,41 @@ function SleepByDayBar({ currentUser }) {
             </p>
 
             <ResponsiveContainer height={350} >
-            <BarChart 
-                data={averageSleepData}
-                margin={{ top: 5, right: 20, left: 5, bottom: 25 }}
-                style={{ backgroundColor : "#eae7dc" }}
-            >
-                <CartesianGrid 
-                    strokeDasharray="4 1" 
-                    fill="#eae7dc"
-                    fillOpacity={.3}
-                    stroke="#000000"
-                />
-                <XAxis 
-                    dataKey="name" 
-                    label={{ value: "Days of the Week", position: "insideBottom", offset: "-15", fontWeight: "bold", fontSize: "18px" }}
-                    // tick={{stroke: "#e85a4f", strokeWidth: 1}}
-                    fontWeight="bold"
-                    
-                />
-                <YAxis 
-                    label={{ value: "Hours Slept per Night", angle: -90, position: "center", fontWeight: "bold", fontSize: "18px", dx: -10}} 
-                    // tick={{stroke: '#000000', strokeWidth: 1}}
-                    fontWeight="bold"
-                    // tickCount={maxSleep}
-                    width={60}
-                    padding={{ left: 20 }}
-                    // dy={0.155}
-                />
-                {/* <Tooltip 
-                    labelStyle={{ backgroundColor: "#e85a4f", fontWeight: "bold", color: "white", justifySelf: "center", padding: "10px"}} 
-                    cursor={{ stroke: '#e85a4fb4', strokeWidth: 2, fill: "#d8c3a54a", border: "1px black solid" }}
-                /> */}
-                <Tooltip 
-                    content={<SleepTooLTip />} 
-                    cursor={{ stroke: '#e85a4fb4', strokeWidth: 2, fill: "#d8c3a54a", border: "1px black solid" }}
-                />
-                <Bar 
-                    dataKey="sleep"
-                    // label={{ fill: 'pink', fontSize: 6 }}
-                    fill="#e85a4f"
-                    unit=" hours"
-                    fontWeight="bold"
-                    stroke="#000000"
-
-                />
-            </BarChart>
-
-
-
+                <BarChart
+                    data={averageSleepData}
+                    margin={{ top: 5, right: 20, left: 5, bottom: 25 }}
+                    style={{ backgroundColor: "#eae7dc" }}
+                >
+                    <CartesianGrid
+                        strokeDasharray="4 1"
+                        fill="#eae7dc"
+                        fillOpacity={.3}
+                        stroke="#000000"
+                    />
+                    <XAxis
+                        dataKey="name"
+                        label={{ value: "Days of the Week", position: "insideBottom", offset: "-15", fontWeight: "bold", fontSize: "18px" }}
+                        fontWeight="bold"
+                    />
+                    <YAxis
+                        label={{ value: "Hours Slept per Night", angle: -90, position: "center", fontWeight: "bold", fontSize: "18px", dx: -10 }}
+                        fontWeight="bold"
+                        width={60}
+                        padding={{ left: 20 }}
+                    />
+                    <Tooltip
+                        content={<SleepTooLTip />}
+                        cursor={{ stroke: '#e85a4fb4', strokeWidth: 2, fill: "#d8c3a54a", border: "1px black solid" }}
+                    />
+                    <Bar
+                        dataKey="sleep"
+                        fill="#e85a4f"
+                        unit=" hours"
+                        fontWeight="bold"
+                        stroke="#000000"
+                    />
+                </BarChart>
             </ResponsiveContainer>
-            
         </div>
     )
 }

@@ -19,7 +19,7 @@ const renderActiveShape = (props) => {
             <text id="pie-chart-text-anchor" x={cx} y={cy} dy={8} textAnchor="middle" fill="#000000" >
                 {payload.name} - {(percent * 100).toFixed(2)}%
             </text>
-            <Sector 
+            <Sector
                 cx={cx}
                 cy={cy}
                 innerRadius={innerRadius}
@@ -30,7 +30,7 @@ const renderActiveShape = (props) => {
                 backgroundColor={"red"}
                 stroke="#000000"
             />
-            <Sector 
+            <Sector
                 cx={cx}
                 cy={cy}
                 startAngle={startAngle}
@@ -67,7 +67,6 @@ function MoodPie({ currentUser }) {
         const displayName = name.substring(2).trim();
         return { name, displayName, value };
     });
-        console.log("Here is the mood data: ", data);
 
     const moodColors = {
         Ecstatic: "#519FB8",
@@ -98,64 +97,64 @@ function MoodPie({ currentUser }) {
         return (
             <div className="custom-legend">
                 <div className="legend-category">
-                {payload.map((entry, index) => (
-                    <div key={`legend-${index}`} className="legend-item">
-                    <span
-                        className="legend-icon"
-                        style={{ backgroundColor: entry.color, border: "2px black solid" }}
-                    />
-                    <span 
-                        className="legend-label"
-                        style={{ fontWeight: "bold" }}
-                    >
-                        {entry.value.slice(3)}
-                    </span>
-                    </div>
-                ))}
+                    {payload.map((entry, index) => (
+                        <div key={`legend-${index}`} className="legend-item">
+                            <span
+                                className="legend-icon"
+                                style={{ backgroundColor: entry.color, border: "2px black solid" }}
+                            />
+                            <span
+                                className="legend-label"
+                                style={{ fontWeight: "bold" }}
+                            >
+                                {entry.value.slice(3)}
+                            </span>
+                        </div>
+                    ))}
                 </div>
             </div>
-            );
-        }
+        );
+    }
 
     return (
         <div className="stat-box">
             <h2>Total Mood Distribution</h2>
             <p>
-                The pie chart below shows you the breakdown of how often you report a certain Mood for the day.  Over the <strong>{currentUser.posts.length}</strong> days you've logged your feelings you most commonly reported feeling <strong>{maxMoodKey}</strong>.  This happened on <strong>{maxMoodValue}</strong> different occassions so far! 
+                The pie chart below shows you the breakdown of how often you report a certain Mood for the day.  Over the <strong>{currentUser.posts.length}</strong> days you've logged your feelings you most commonly reported feeling <strong>{maxMoodKey}</strong>.  This happened on <strong>{maxMoodValue}</strong> different occassions so far!
             </p>
 
             <ResponsiveContainer height={350}>
                 <PieChart>
-                <Pie
-                    activeIndex={activeIndex}
-                    activeShape={renderActiveShape}
-                    data={data}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={80}
-                    outerRadius={100}
-                    fill="1f1f1f"
-                    dataKey="value"
-                    legendType="square"
-                    paddingAngle={1}
-                    onMouseEnter={onPieEnter}
-                    stroke="#000000"
-                    wrapperStyle={{
-                        border: "2px black solid"
-                    }}
-                >
-                    {data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={moodColors[entry.displayName]} />
-                    ))}
-                </Pie>
-                <Legend
-                    content={<CustomLegend />}
-                    verticalAlign="bottom"
-                    width="100%"
-                    wrapperStyle={{ paddingBottom: "10px" }}
-                />
-            </PieChart>
-        </ResponsiveContainer>
+                    <Pie
+                        activeIndex={activeIndex}
+                        activeShape={renderActiveShape}
+                        data={data}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={80}
+                        outerRadius={100}
+                        fill="1f1f1f"
+                        dataKey="value"
+                        legendType="square"
+                        paddingAngle={1}
+                        onMouseEnter={onPieEnter}
+                        stroke="#000000"
+                        wrapperStyle={{
+                            border: "2px black solid"
+                        }}
+                    >
+                        {data.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={moodColors[entry.displayName]} />
+                        ))}
+                    </Pie>
+                    <Legend
+                        content={<CustomLegend />}
+                        verticalAlign="bottom"
+                        width="100%"
+                        wrapperStyle={{ paddingBottom: "10px" }}
+                    />
+                </PieChart>
+            </ResponsiveContainer>
 
         </div>
     )

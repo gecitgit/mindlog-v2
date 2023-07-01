@@ -6,6 +6,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #eae7dc;
+
 }
 
 #root {
@@ -19,6 +21,9 @@ body {
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  background: #eae7dc;
+  color: #575752;
+  height: 100vh;
 }
 
 .authDetailsContainer {
@@ -26,7 +31,6 @@ body {
 }
 .userHomeContainer {
   width: 100%;
-  border: 4px dotted midnightblue;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +50,6 @@ body {
   flex-direction: column;
   align-items: center;
   width: clamp(350px, 65%, 1000px);
-  border: 2px dashed green;
 }
 
 .pageBodyText {
@@ -59,51 +62,66 @@ body {
 }
 
 .h1Title {
-  font-size: 50px;
+  font-size: 40px;
 }
 /* Repeated Styles Ends */
 /* //////////////////// */
 
 /* ///////////////////////// */
 /* Welcome page format start */
+
 .joinForm {
+  width: 250px;
+  height: 150px;
   color: #575752;
   text-decoration: none;
   font-size: 32px;
-  border: 0;
-  border-bottom: 1px #e98074 dashed;
-  border-top: 1px #e98074 dashed;
+  border: none;
   background: none;
   font-weight: bolder;
   font-family: inherit;
-  padding-bottom: 50px;
+  padding: 20px;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  animation: backgroundFade 2s infinite alternate;
 }
 
-.joinForm::before{
-  margin-left: auto;
+@keyframes backgroundFade {
+  0% {
+    background-color: rgba(232, 90, 79, 0.4);
+  }
+  100% {
+    background-color: rgba(232, 90, 79, 0.1);
+  }
 }
 
-.joinForm::after, .joinForm::before {
+.joinForm::before,
+.joinForm::after {
   content: '';
+  position: absolute;
+  top: 0;
   width: 0%;
-  height: 6px;
+  height: 100%;
   background: #e85a4f;
-  display: block;
-  transition: 0.5s;
+  transition: width 0.5s;
 }
 
-.joinForm:hover {
-  color: #e85a4f;
-  transition: 0.5s;
-  border: none;
-  border-bottom: 1px rgba(233, 128, 116, 0.027);
-  border-top: 1px rgba(233, 128, 116, 0.027);
+.joinForm::before {
+  left: 0;
 }
 
-.joinForm:hover::after, .joinForm:hover::before {
-  width: 100%;
+.joinForm::after {
+  right: 0;
 }
+
+.joinForm:hover::before,
+.joinForm:hover::after {
+  width: 50%;
+}
+
+
+
 /* Welcome page format end */
 /* /////////////////////// */
 
@@ -370,11 +388,12 @@ a, a:visited, a:hover, a:active {
 /* ///// filter specifics ////// */
 
 .logFilterBody {
-  border: 2px purple dashed;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10px;
+  background-color: #eee;
 }
 
 .logFilterBody span{
@@ -748,6 +767,9 @@ body.modal-open{
 /* FORM page format ends */
 /* /////////////////////// */
 
+
+/* ///////////////////////// */
+/* LOGIN/SIGNUP page format starts */
 .auth-prompt {
   width: clamp(300px, 65%, 1000px);
   display: flex;
@@ -897,16 +919,5 @@ body.modal-open{
   text-decoration: underline;
 }
 
-/* ///////////////////////// */
-/* LOGIN page format starts */
-
-/* LOGIN page format ends */
-/* /////////////////////// */
-
-
-
-/* ///////////////////////// */
-/* REGISTER page format starts */
-
-/* REGISTER page format ends */
+/* LOGIN/SIGNUP page format ends */
 /* /////////////////////// */
