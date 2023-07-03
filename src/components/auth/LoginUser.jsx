@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { auth, provider } from '../../firebase'
-import { signInWithEmailAndPassword as signInWithEmail, signInWithPopup } from 'firebase/auth'
+import { signInWithEmailAndPassword as signInWithEmail, signInWithRedirect, getRedirectResult } from 'firebase/auth'
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { set, ref, get } from 'firebase/database';
@@ -38,30 +38,37 @@ const LoginUser = () => {
             });
     };
 
-    const handleSignInWithGoogle = async () => {
-        try {
-            const userCredential = await signInWithPopup(auth, provider);
-            const { user } = userCredential;
-            const { email, uid } = user;
-
-            const userRef = ref(database, `users/${uid}`);
-            const userSnapshot = await get(userRef);
-            const userData = {
-                email: email,
-                uid: uid,
-            };
-
-            if (!userSnapshot.exists() || !userSnapshot.val().username) {
-                userData.username = "";
-
-                set(userRef, userData);
-            } else {
-                console.log("User data already exists");
-            }
-        } catch (error) {
-            console.error("error signing in with google: ", error);
-        }
+    const handleSignInWithGoogle = () => {
+        signInWithRedirect(auth, provider);
     };
+
+    useEffect(() => {
+        getRedirectResult(auth)
+            .then((result) => {
+                if (result.user) {
+                    const user = result.user;
+                    const { email, uid } = user;
+                    const userRef = ref(database, `users/${uid}`);
+
+                    get(userRef).then((userSnapshot) => {
+                        const userData = {
+                            email: email,
+                            uid: uid,
+                        };
+
+                        if (!userSnapshot.exists() || !userSnapshot.val().username) {
+                            userData.username = "";
+                            set(userRef, userData);
+                        } else {
+                            console.log("User data already exists");
+                        }
+                    })
+                }
+            })
+            .catch((error) => {
+                console.error("error in redirect result: ", error);
+            });
+    }, []);
 
     return (
         <div className="auth-prompt">

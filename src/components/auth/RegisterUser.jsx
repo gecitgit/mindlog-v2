@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { auth, database, provider } from "../../firebase";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, getRedirectResult, signInWithRedirect } from "firebase/auth";
 import { set, ref, get } from "firebase/database";
 import { Link } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
@@ -11,28 +11,23 @@ function signUpWithEmailAndPassword(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
 }
 
-function signUpWithGoogle() {
-    return signInWithPopup(auth, provider);
-}
-
-async function addNewUserToDB(userCredential) {
+function addNewUserToDB(userCredential) {
     const { email, uid } = userCredential.user;
     const userRef = ref(database, `users/${uid}`);
 
-    try {
-        const snapshot = await get(userRef);
+    return get(userRef).then((snapshot) => {
         if (!snapshot.exists()) {
             const newUser = {
                 email: email,
                 uid: uid,
             };
-            await set(userRef, newUser);
+            return set(userRef, newUser);
         } else {
             console.error("user already exists in db")
         }
-    } catch (error) {
+    }).catch((error) => {
         console.error("error checking user existence", error);
-    }
+    });
 }
 
 
@@ -52,31 +47,28 @@ function RegisterUser() {
         }
     }, [password, passwordConfirm]);
 
-    function handleSignUp(e, signUpFunction) {
-        e.preventDefault();
-
-        if (passwordError) {
-            return;
-        }
-
-        signUpFunction()
-            .then((userCredential) => {
-                toast.success("Successfully signed up!");
-                addNewUserToDB(userCredential);
+    useEffect(() => {
+        getRedirectResult(auth)
+            .then((result) => {
+                if (result && result.user) {
+                    toast.success("Successfully signed up!");
+                    addNewUserToDB(result);
+                }
             })
             .catch((error) => {
-                console.error('sign-up error: ', error);
-                toast.error("There was an issue signing up." , error);
+                console.error("sign-up error: ", error);
+                toast.error("There was an issue signing up.", error);
             });
-    }
+    }, []);
+    
 
     function handleSignUpWithEmailPassword(e) {
         e.preventDefault();
-    
+
         if (passwordError) {
             return;
         }
-    
+
         signUpWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 toast.success("Successfully signed up!");
@@ -90,16 +82,7 @@ function RegisterUser() {
 
     function handleSignUpWithGoogle(e) {
         e.preventDefault();
-    
-        signUpWithGoogle()
-            .then((userCredential) => {
-                toast.success("Successfully signed up!");
-                addNewUserToDB(userCredential);
-            })
-            .catch((error) => {
-                console.error('sign-up error: ', error);
-                toast.error("There was an issue signing up." , error);
-            });
+        signInWithRedirect(auth, provider);
     }
 
     return (
@@ -153,8 +136,8 @@ function RegisterUser() {
                             <FcGoogle className="google-social-icon" /><span>Sign up with Google</span>
                         </button>
                         <span className="auth-form-calltoaction">
-                            Already have an accont? <Link to="/login" style={{ color: "#e85a4f", fontWeight: "bolder"}}><u>Log in!</u></Link>
-                    </span>
+                            Already have an account? <Link to="/login" style={{ color: "#e85a4f", fontWeight: "bolder"}}><u>Log in!</u></Link>
+                        </span>
                     </div>
                 </div>
             </form>
