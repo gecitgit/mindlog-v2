@@ -73,7 +73,7 @@ function LogFilter({ onFilterSubmit, posts }) {
 
     return (
         <div className="logFilterBody">
-            <span>Filter your journal entries effortlessly by day of the week, date, hours of sleep, mood, and energy. Remember to press the 'Update my posts!' button anytime you change something to apply your filters!</span>
+            <span>Filter your journal entries effortlessly by day of the week, date, hours of sleep, mood, and energy. Remember to press the 'Apply filters!' button anytime you change something to apply your filters!</span>
 
             <form onSubmit={handleSubmit}>
             <div className="logFilterHolder">
@@ -397,7 +397,7 @@ function LogFilter({ onFilterSubmit, posts }) {
 
             </div>
             <div style={{ display: "flex", justifyContent: "center"}}>
-                <button type="submit" className='updateFilter'>Update my posts!</button>
+                <button type="submit" className='updateFilter'>Apply filters!</button>
             </div>
             </form>
 

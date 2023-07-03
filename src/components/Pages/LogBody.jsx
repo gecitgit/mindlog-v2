@@ -72,7 +72,7 @@ function LogBody({ posts, onDeletePost }) {
         <div className="pageBody">
             <h1 className="pageBodyText" style={{ marginBottom: 0 }}>Welcome to your Journal</h1>
             <p style={{ padding: "5px" }}>
-                Welcome to the Log page! Here, you can view all your log entries and dive int the details of your journey.  Use the "Show Filters" button to refine your search by day of the week, date range, hours slept, mood, and energy.  Customize your view to uncover the moments that matter most.
+                Welcome to the Log page! Here, you can view all your log entries and dive into the details of your journey.  Use the "Show Filters" button to refine your search by day of the week, date range, hours slept, mood, and energy.  Customize your view to uncover the moments that matter most.
                 <br />
                 Adding a new entry is a breeze from this page too! Simply click the designated button and let your thoughts flow onto the screen.
                 <br />

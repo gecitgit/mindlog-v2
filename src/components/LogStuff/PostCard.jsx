@@ -86,7 +86,7 @@ function PostCard({ post, postId, onDeletePost }) {
                                     <span>You didn't have any additional notes for the day.</span>
                                 )}
                             </p>
-                            <button className="modal-close-btn" onClick={toggleModal}>back to the log</button>
+                            <button className="modal-close-btn" onClick={toggleModal}>Back to the log</button>
                         </div>
                     </div>
                 </div>
